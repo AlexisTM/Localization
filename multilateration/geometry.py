@@ -67,11 +67,14 @@ class Point:
         z = -self.z
         return Point(x, y, z)
 
+    def __getitem__(self, id):
+        return [self.x, self.y, self.z][id]
+
     def area(self):
         return 0.0
 
     def dist(self, other):
-        return ((self.x - other.x) ** 2 + (self.y - other.y) ** 2 + (self.z - other.z) ** 2) ** 0.5
+        return ((self[0] - other[0]) ** 2 + (self[1] - other[1]) ** 2 + (self[2] - other[2]) ** 2) ** 0.5
 
     def std(self):
         return [self.x, self.y, self.z]

@@ -23,7 +23,7 @@ pip install -e .
 ```python
 import multilateration
 
-from multilateration import MODE_2D, MODE_3D
+from multilateration import MODE_2D, MODE_3D, MODE_2D5
 
 # MODE_2D5 has not been implemented yet
 

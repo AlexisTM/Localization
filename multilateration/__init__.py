@@ -75,4 +75,4 @@ class Project:
                 c = self.AnchorDic[landmark].loc
                 d = tup[1]
                 cA.append(Circle(c, d))
-            tar.loc = lse(cA, mode=self.mode, cons=False)
+            tar.loc = lse(cA)
