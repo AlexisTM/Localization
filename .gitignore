@@ -1,5 +1,5 @@
 dist/*
 build/*
-Localization.egg-info/*
+Multilateration.egg-info/*
 *.pyc
 *.ipynb
