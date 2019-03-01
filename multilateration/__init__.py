@@ -1,6 +1,5 @@
 from .geometry import Point, Circle
 from .methods import *
-from .constants import MODE_2D, MODE_3D, MODE_2D5
 
 class Anchor:
     def __init__(self, ID, loc):
@@ -28,19 +27,10 @@ class Target:
 
 
 class Project:
-    def __init__(self, mode=MODE_2D):
-        if mode == MODE_2D5:
-            print("ERROR: MODE_2D5 is not implemented; rolling back to MODE_3D.")
-            mode = MODE_3D
-        if mode not in [MODE_2D, MODE_3D]:
-            print("ERROR: MODE_x is not implemented; rolling back to MODE_3D.")
-            mode = MODE_3D
-        self.mode = mode
+    def __init__(self, goal=[None, None, None]):
         self.AnchorDic = {}
         self.TargetDic = {}
-
-    def set_mode(self, mode):
-        self.mode = mode
+        self.goal = goal
 
     def add_anchor(self, ID, loc):
         try:
@@ -75,4 +65,4 @@ class Project:
                 c = self.AnchorDic[landmark].loc
                 d = tup[1]
                 cA.append(Circle(c, d))
-            tar.loc = lse(cA)
+            tar.loc = lse(cA, goal=self.goal)

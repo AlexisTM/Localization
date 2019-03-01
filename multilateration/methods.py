@@ -1,16 +1,33 @@
 import numpy as np
 from .geometry import Point
 from scipy.optimize import minimize
-from .constants import MODE_2D, MODE_3D, MODE_2D5
 from math import sqrt
 
-def cost_function(x, c, r):
+from sys import version_info
+if (version_info > (3, 0)):
+    xrange = range
+
+def cost_function(x, c, r, goal):
     e = 0
+    # Force an axis
+    # print x
+    # # This force an axis value
+    # for i, value in enumerate(goal):
+    #     if value is not None:
+    #         x[i] = value
+
+    # current = [0,0,0]
+    # for i, value in enumerate(goal):
+    #     if value is not None:
+    #         current[i] = value
+    #     else:
+    #         current[i] = x[i]
+
     for i in xrange(len(c)):
         e += (c[i].dist(x)- r[i]) ** 2
     return e
 
-def lse(cA):
+def lse(cA, goal=[None, None, None]):
     # cA is a cicle array [Circle(), Circle()] representing measurements
     # l = number of circles
     l = len(cA)
@@ -33,6 +50,10 @@ def lse(cA):
     # Extra arguments: 
     #   c = Point(), anchor positions
     #   r = all measurements
-    result = minimize(cost_function, x0, args=(c, r), method='BFGS')
+    for i, value in enumerate(goal):
+        if value is not None:
+            x0[i] = value
+
+    result = minimize(cost_function, x0, args=(c, r, goal), method='BFGS')
     ans = list(result.x)
     return Point(ans)

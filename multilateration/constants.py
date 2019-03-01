@@ -1,3 +1,0 @@
-MODE_2D = 0
-MODE_3D = 1
-MODE_2D5 = 2
