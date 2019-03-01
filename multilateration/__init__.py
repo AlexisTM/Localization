@@ -29,6 +29,12 @@ class Target:
 
 class Project:
     def __init__(self, mode=MODE_2D):
+        if mode == MODE_2D5:
+            print("ERROR: MODE_2D5 is not implemented; rolling back to MODE_3D.")
+            mode = MODE_3D
+        if mode not in [MODE_2D, MODE_3D]:
+            print("ERROR: MODE_x is not implemented; rolling back to MODE_3D.")
+            mode = MODE_3D
         self.mode = mode
         self.AnchorDic = {}
         self.TargetDic = {}
