@@ -45,5 +45,4 @@ The library has been cleaned:
 
 - Remove unused dependencies
 - Keep only the LSE method
-- Added the 2D5 model
-- Removed Earth1 model
+- Removed all models and changed the usage. It will only be in 3D, with values we can fix with the goal, to allow 2.5D.

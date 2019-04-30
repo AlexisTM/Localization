@@ -13,4 +13,4 @@ t.add_measure('anchore_B',sqrt(2))
 t.add_measure('anchore_C',sqrt(3))
 P.solve()
 
-print(t.ID, str(t.loc))
+print(t.ID, str(t.position))

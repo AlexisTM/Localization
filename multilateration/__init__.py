@@ -2,25 +2,25 @@ from .geometry import Point, Circle
 from .methods import *
 
 class Anchor:
-    def __init__(self, ID, loc):
-        self.loc = loc
+    def __init__(self, ID, position):
+        self.position = position
         self.ID = str(ID)
 
     def __str__(self):
-        return 'Anchor ' + self.ID + ' @ ' + self.loc.__str__()
+        return 'Anchor ' + self.ID + ' @ ' + self.position.__str__()
 
 
 class Target:
     def __init__(self, ID):
-        self.loc = None
+        self.position = None
         self.ID = str(ID)
         self.measures = []
 
     def __str__(self):
-        if self.loc is None:
+        if self.position is None:
             return 'Target ' + self.ID
         else:
-            return 'Target ' + self.ID + ' @ Real Location:' + self.loc.__str__()
+            return 'Target ' + self.ID + ' @ Real position:' + self.position.__str__()
 
     def add_measure(self, a, d):
         self.measures.append((a, d))
@@ -28,41 +28,41 @@ class Target:
 
 class Project:
     def __init__(self, goal=[None, None, None]):
-        self.AnchorDic = {}
-        self.TargetDic = {}
+        self.anchors = {}
+        self.targets = {}
         self.goal = goal
 
-    def add_anchor(self, ID, loc):
+    def add_anchor(self, ID, position):
         try:
-            self.AnchorDic[ID]
+            self.anchors[ID]
             print(str(ID) + ':Anchor with same ID already exists')
             return
         except KeyError:
-            a = Anchor(ID, Point(loc))
-            self.AnchorDic[ID] = a
+            a = Anchor(ID, Point(position))
+            self.anchors[ID] = a
         return a
 
     def add_target(self, ID=None):
         try:
-            self.TargetDic[ID]
+            self.targets[ID]
             print('Target with same ID already exists')
             return
         except:
             if ID:
                 ID = str(ID)
             else:
-                ID = 't' + str(len(self.TargetDic))
+                ID = 't' + str(len(self.targets))
             t = Target(ID)
-            self.TargetDic[ID] = t
+            self.targets[ID] = t
         return t
 
     def solve(self, **kwargs):
-        for tID in self.TargetDic.keys():
-            tar = self.TargetDic[tID]
+        for target_id in self.targets.keys():
+            target = self.targets[target_id]
             cA = []
-            for tup in tar.measures:
+            for tup in target.measures:
                 landmark = tup[0]
-                c = self.AnchorDic[landmark].loc
+                c = self.anchors[landmark].position
                 d = tup[1]
                 cA.append(Circle(c, d))
-            tar.loc = lse(cA, goal=self.goal)
+            target.position = lse(cA, goal=self.goal)
