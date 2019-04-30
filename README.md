@@ -25,14 +25,14 @@ import multilateration
 from math import sqrt
 
 P = multilateration.Project(goal=[None, None, 0.0])
-P.add_anchor('anchore_A',(1,0,1))
-P.add_anchor('anchore_B',(-1,0,1))
-P.add_anchor('anchore_C',(-1,-1,1))
+P.add_anchor('anchor_A',(1,0,1))
+P.add_anchor('anchor_B',(-1,0,1))
+P.add_anchor('anchor_C',(-1,-1,1))
 
 t = P.add_target()
-t.add_measure('anchore_A',1)
-t.add_measure('anchore_B',1)
-t.add_measure('anchore_C',sqrt(2))
+t.add_measure('anchor_A',1)
+t.add_measure('anchor_B',1)
+t.add_measure('anchor_C',sqrt(2))
 P.solve()
 
 print(t.ID, str(t.loc))
