@@ -7,8 +7,11 @@ class Circle:
         self.c = p
         self.r = float(r)
 
+    def __repr__(self):
+        return self.__str__()
+
     def __str__(self):
-        return "".join(['Circle[' + self.c.__str__() + ',' + str(self.r) + ']'])
+        return "".join(['Circle[' + self.c.__str__() + ':' + str(self.r) + ']'])
 
     def __eq__(self, other):
         return self.c == other.c and self.r == other.r
