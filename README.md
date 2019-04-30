@@ -11,6 +11,8 @@ This fork has the same 2D/3D implementations but aim (not done yet) to provide a
 The package has been tested with python2.7 and python3.6. Use pip to install the package:
 
 ```bash
+# required libraries:
+pip install numpy scipy
 pip install multilateration
 # or before being published on Pypi;
 sudo -H python setup.py install

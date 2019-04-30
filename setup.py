@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name='Multilateration',
-    version='0.1.0',
+    version='0.2.0',
     author='AlexisTM',
     author_email='alexis.paques@gmail.com',
     packages=['multilateration'],
