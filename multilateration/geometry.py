@@ -5,7 +5,7 @@ from __future__ import division
 from math import pi, cos, sin, atan, acos
 import numpy as np
 
-class Circle:
+class Circle(object):
     def __init__(self, p, r):
         self.c = p
         self.r = float(r)
@@ -19,7 +19,7 @@ class Circle:
     def __eq__(self, other):
         return self.c == other.c and self.r == other.r
 
-class Point:
+class Point(object):
     def __init__(self, x, y=0, z=0):
         if(type(x) in [list, tuple, np.ndarray]):
             self.x = x[0] if len(x) >= 1 else 0.0

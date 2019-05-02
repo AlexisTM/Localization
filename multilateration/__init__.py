@@ -3,6 +3,8 @@
 
 from .engine import Engine, Anchor
 from .geometry import Point, Circle
+from .methods import LSEMethod
 
 __all__ =  ['Engine', 'Anchor',
-            'Point', 'Circle']
+            'Point', 'Circle',
+            'LSEMethod']
